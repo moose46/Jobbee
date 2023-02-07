@@ -43,7 +43,7 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "rest_framework",
     "corsheaders",
-    "storages",
+    # "storages",
     "django.contrib.gis",
     "django_filters",
     "job.apps.JobConfig",

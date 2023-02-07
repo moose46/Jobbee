@@ -54,10 +54,10 @@ class Job(models.Model):
         max_length=16, choices=JobType.choices, default=JobType.Permanent
     )
     education = models.CharField(
-        max_length=30, choices=Education.choices, default=Education.b
+        max_length=30, choices=Education.choices, default=Education.Bachelors
     )
     industry = models.CharField(
-        max_length=20, choices=Industry.choices, default=Industry.Business
+        max_length=30, choices=Industry.choices, default=Industry.Business
     )
     experience = models.CharField(
         max_length=20, choices=Experience.choices, default=Experience.NO_EXPERIENCE
@@ -69,7 +69,7 @@ class Job(models.Model):
     company = models.CharField(max_length=100, null=True)
     point = gismodels.PointField(default=Point(0.0, 0.0))
     lastDate = models.DateTimeField(default=return_date_time)
-    user = models.ForeignKey(User, on_delete=models.SET_DEFAULT, null=True)
+    user = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
     createdAt = models.DateTimeField(auto_now_add=True)
 
     def save(self, *args, **kwargs):
