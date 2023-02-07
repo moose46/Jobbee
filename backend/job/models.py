@@ -73,9 +73,9 @@ class Job(models.Model):
     createdAt = models.DateTimeField(auto_now_add=True)
 
     def save(self, *args, **kwargs):
-        g = geocoder.mapquest(self.address, key=os.environ.get("GEODOCDER_API"))
+        g = geocoder.mapquest(self.address, key=os.environ.get("GEOCODER_API"))
         print(g)
         lng = g.lng
         lat = g.lat
-        self.point(lng, lat)
+        self.point = Point(lng, lat)
         super(Job, self).save(*args, **kwargs)
