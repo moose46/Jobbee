@@ -7,6 +7,8 @@ class SignUpSerializer(serializers.ModelSerializer):
         model = User
         fields = ("first_name", "last_name", "email", "password")
 
+    # FIXME check min length for password
+
     extra_kwargs = {
         "first_name": {"required": True, "allow_blank": False},
         "last_name": {"required": True, "allow_blank": False},
