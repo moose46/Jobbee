@@ -5,14 +5,16 @@ from .models import Job
 from .serializers import JobSerializer
 from rest_framework import status
 from django.db.models import Avg, Count, Min, Max
+from .filters import JobFilter
 
 # Create your views here.
 
 
 @api_view(["GET"])
 def getAllJobs(request):
-    jobs = Job.objects.all()
-    serializer = JobSerializer(jobs, many=True)
+    filterset = JobFilter(request.GET, queryset=Job.objects.all().order_by("id"))
+
+    serializer = JobSerializer(filterset.qs, many=True)
     return Response(serializer.data)
 
 
@@ -67,7 +69,7 @@ def getTopicStats(request, topic):
     jobs = Job.objects.filter(**args)
 
     if len(jobs) == 0:
-        return Response({"message": "Not stats found for {topic}".format(topic=topic)})
+        return Response({"message": f"No stats found for {topic}"})
 
     stats = jobs.aggregate(
         total_jobs=Count("title"),
