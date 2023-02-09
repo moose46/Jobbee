@@ -50,7 +50,7 @@ def updateUser(request):
     user = request.user
 
     data = request.data
-    print(data)
+
     user.first_name = data["first_name"]
     user.last_name = data["last_name"]
     user.username = data["username"]

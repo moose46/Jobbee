@@ -29,8 +29,11 @@ DEBUG = os.environ.get("DEBUG") == "True"
 
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
-ALLOWED_HOSTS = []
+DEBUG = os.environ.get("DEBUG") == "True"
+
+DEBUG = False
+
+ALLOWED_HOSTS = ["localhost"]
 
 
 # Application definition
