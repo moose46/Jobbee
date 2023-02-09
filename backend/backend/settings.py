@@ -31,7 +31,7 @@ DEBUG = os.environ.get("DEBUG") == "True"
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.environ.get("DEBUG") == "True"
 
-DEBUG = False
+# DEBUG = False
 
 ALLOWED_HOSTS = ["localhost"]
 
@@ -119,6 +119,7 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 REST_FRAMEWORK = {
+    "EXCEPTION_HANDLER": "utils.custom_exception_handler.custom_exception_handler",
     "DEFAULT_AUTHENTICATION_CLASSES": (
         "rest_framework_simplejwt.authentication.JWTAuthentication",
     ),
