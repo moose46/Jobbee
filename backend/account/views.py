@@ -34,9 +34,11 @@ def reqister(request):
         return Response(user.errors)
 
 
+# FIX This get a Forbidden Error
 @api_view(["GET"])
 @permission_classes([IsAuthenticated])
 def currentUser(request):
+    # print(request.user)
     user = UserSerializer(request.user)
     # print(user)
     return Response(user.data)

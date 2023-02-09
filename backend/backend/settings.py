@@ -116,15 +116,15 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 REST_FRAMEWORK = {
-    "DEFAULT_AUTHENTIONCATION_CLASSES": (
+    "DEFAULT_AUTHENTICATION_CLASSES": (
         "rest_framework_simplejwt.authentication.JWTAuthentication",
-    )
+    ),
 }
 
 SIMPLE_JWT = {
-    "ACESS_LIFETIME_TOKEN": timedelta(days=30),
-    "AUTH_HEADERS_TYPES": ("Bearer",),
-    "AUTH_TOTKEN_CLASSES": ("rest_framnework_simplejwt.tokens.AccessToken",),
+    "ACCESS_TOKEN_LIFETIME": timedelta(days=30),
+    "AUTH_HEADER_TYPES": ("Bearer",),
+    "AUTH_TOKEN_CLASSES": ("rest_framework_simplejwt.tokens.AccessToken",),
 }
 # Internationalization
 # https://docs.djangoproject.com/en/4.1/topics/i18n/
