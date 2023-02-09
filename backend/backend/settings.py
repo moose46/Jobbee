@@ -124,7 +124,7 @@ REST_FRAMEWORK = {
 SIMPLE_JWT = {
     "ACESS_LIFETIME_TOKEN": timedelta(days=30),
     "AUTH_HEADERS_TYPES": ("Bearer",),
-    "AUTH_TOTKEN_CLASSES": ("rest_framnework_simplejwt.tokens.AccessToken"),
+    "AUTH_TOTKEN_CLASSES": ("rest_framnework_simplejwt.tokens.AccessToken",),
 }
 # Internationalization
 # https://docs.djangoproject.com/en/4.1/topics/i18n/

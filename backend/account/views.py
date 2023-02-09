@@ -1,11 +1,12 @@
 from django.shortcuts import render
-from rest_framework.decorators import api_view
+from rest_framework.decorators import api_view, permission_classes
 from rest_framework.response import Response
 from rest_framework import status
 
 from django.contrib.auth.hashers import make_password
 from .seralizers import SignUpSerializer, UserSerializer
 from django.contrib.auth.models import User
+from rest_framework.permissions import IsAuthenticated
 
 
 # Create your views here.
@@ -22,10 +23,20 @@ def reqister(request):
                 email=data["email"],
                 password=make_password(data["password"]),
             )
+
             return Response({"message": "User registered"}, status=status.HTTP_200_OK)
         else:
             return Response(
-                {"error": "User Alrady Exists"}, status=status.HTTP_400_BAD_REQUEST
+                {"error": f"User Alrady Exists"},
+                status=status.HTTP_400_BAD_REQUEST,
             )
     else:
         return Response(user.errors)
+
+
+@api_view(["GET"])
+@permission_classes([IsAuthenticated])
+def currentUser(request):
+    user = UserSerializer(request.user)
+    # print(user)
+    return Response(user.data)
